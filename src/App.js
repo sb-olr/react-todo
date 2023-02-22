@@ -29,6 +29,13 @@ function App() {
     setTodos(newTodos);
   }
 
+  function editTodo(newTodo) {
+    const newTodos = [...todos];
+    const todo = newTodos.find((todo) => todo.id === newTodo.id);
+    todo.name = newTodo.name;
+    setTodos(newTodos);
+  }
+
   function handleAddTodo(e) {
     const name = todoNameRef.current.value;
     if (name === "") return;
@@ -69,7 +76,12 @@ function App() {
               {" "}
               {todos.filter((todo) => !todo.complete).length} left to do
             </div>
-            <TodoList todos={todos} toggleTodo={toggleTodo} id="todo-list" />
+            <TodoList
+              todos={todos}
+              editTodo={editTodo}
+              toggleTodo={toggleTodo}
+              id="todo-list"
+            />
           </div>
         </div>
       </div>
